@@ -48,7 +48,7 @@ function loadSystem() {
 
   cp ../.* baseHolder/
 
-  for file in baseHolder/*
+  for file in baseHolder/.*
   do
     echo "$file" &>> copiedFiles.txt
     if [[ "$file" == "baseHolder/.partarumGhost" ]] && [[ "$file" == "baseHolder/init.sh" ]];
