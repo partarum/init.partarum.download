@@ -44,7 +44,7 @@ function loadSystem() {
 
   mkdir baseHolder
 
-  cp ../. baseHolder/
+  cp ../* baseHolder/
 
   for file in baseHolder/*
   do
