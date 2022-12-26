@@ -50,7 +50,7 @@ function loadSystem() {
 
   for file in baseHolder/.* baseHolder/*
   do
-    echo "$file" &>> copiedFiles.txt
+    cmd "$file" &>> copiedFiles.txt
     if [[ "$file" == baseHolder/.partarumGhost ]] && [[ $(cmd "$file") == baseHolder/init.sh ]];
     then
       rm -rf "$file"
