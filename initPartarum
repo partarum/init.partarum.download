@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# All Files for /usr/local/bin should be declare here for global use
+# Copyright 2022 bombi
+
+userSystem=0x0000
+
+function loadSystem() {
+
+  if [[ "$(which git)"  == "" ]];
+  then
+    echo "git is not installed"
+    echo "install git"
+    sudo apt install -y git
+  else
+    echo "git is installed"
+  fi
+
+  if [[ -d .partarumGhost ]];
+  then
+    cd .partarumGhost || exit
+  fi
+
+  git config config.user "Partarum"
+  git config config.email "email@partarum.de"
+
+  # check ob Plesk || Keyhelp || blank
+
+  if [[ -d /etc/apache2/plesk.conf.d ]] || [[ -f /usr/sbin/plesk ]] || [[ -d /etc/plesk ]] || [[ -f /etc/plesk-release ]];
+  then
+    userSystem=0x0001
+  fi
+
+  git clone https://github.com/partarum/install.partarum.download.git installPartarum
+
+  mkdir githolder
+
+  git clone "$1" githolder/userRep
+
+  mkdir baseHolder
+
+  for file in ../*
+  do
+    if [[ "$file" != .partarumGhost ]] && [[ "$file" != init.sh ]];
+    then
+      cp "$file" baseHolder/"$file"
+    fi
+  done
+
+  if [[ -d installPartarum ]];
+  then
+
+    cd installPartarum || exit 0
+    git config --global --add safe.directory .
+
+    if [[ "$(which rsync)" == "" ]];
+    then
+      echo "rsync is not installed and will be installed" &> rsyncIsNotInstalled.txt
+      echo "please give the rights for sudo, to install rsync" &>> rsyncIsNotInstalled.txt
+      sudo apt install -y rsync || exit 0
+      sleep 1
+    fi
+
+    loadPartarumWeb
+  fi
+}
+
+function loadPartarumWeb() {
+  rsync -a -v -p --progress . ..
+
+  cd ..
+
+  rm -rf installPartarum
+
+  echo "the next step needs sudo - please give the installation you're okay" &> changeToInstallPartarum.txt
+  bash installPartarumWeb "$userSystem"
+}
+
+function main() {
+
+  loadSystem "$@"
+}
+
+main "$@"
