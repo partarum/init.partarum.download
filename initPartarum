@@ -44,15 +44,9 @@ function loadSystem() {
 
   mkdir baseHolder
 
-  for file in ../*
-  do
-    if [[ "$file" != .partarumGhost ]] && [[ "$file" != init.sh ]];
-    then
-      cp "$file" baseHolder/"$file"
-    fi
-  done
+  cp ../* baseHolder/*
 
-  for file in ../.*
+  for file in ../*
   do
     if [[ "$file" != .partarumGhost ]] && [[ "$file" != init.sh ]];
     then
