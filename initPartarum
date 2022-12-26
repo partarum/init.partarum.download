@@ -51,7 +51,7 @@ function loadSystem() {
   for file in baseHolder/.* baseHolder/*
   do
     echo "$file" &>> copiedFiles.txt
-    if [[ "$file" == "baseHolder/.partarumGhost" ]] && [[ "$file" == "baseHolder/init.sh" ]];
+    if [[ "$file" == baseHolder/.partarumGhost ]] && [[ $(cmd "$file") == baseHolder/init.sh ]];
     then
       rm -rf "$file"
       echo "$file" &>> deletedFiles.txt
