@@ -7,6 +7,8 @@ userSystem=0x0000
 
 function loadSystem() {
 
+  pwd &> pwdInit.txt
+
   if [[ "$(which git)"  == "" ]];
   then
     echo "git is not installed"
