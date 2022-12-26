@@ -23,7 +23,7 @@ function loadSystem() {
 
     cd .partarumGhost || exit
 
-    pwd &> .partarumGhost/pwdInit_2.txt
+    pwd &> pwdInit_2.txt
   fi
 
   git config config.user "Partarum"
