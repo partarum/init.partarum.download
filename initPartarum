@@ -7,8 +7,6 @@ userSystem=0x0000
 
 function loadSystem() {
 
-  pwd &> pwdInit.txt
-
   if [[ "$(which git)"  == "" ]];
   then
     echo "git is not installed"
@@ -20,7 +18,12 @@ function loadSystem() {
 
   if [[ -d .partarumGhost ]];
   then
+
+    pwd &> .partarumGhost/pwdInit.txt
+
     cd .partarumGhost || exit
+
+    pwd &> .partarumGhost/pwdInit_2.txt
   fi
 
   git config config.user "Partarum"
