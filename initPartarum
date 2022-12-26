@@ -44,12 +44,15 @@ function loadSystem() {
 
   mkdir baseHolder
 
-  cp ../* baseHolder/*
+  cp -a ../. baseHolder/
 
   for file in ../*
   do
     if [[ "$file" != .partarumGhost ]] && [[ "$file" != init.sh ]];
     then
+
+      echo "$file" &>> copyFiles.txt
+
       cp "$file" baseHolder/"$file"
     fi
   done
