@@ -54,7 +54,7 @@ function loadSystem() {
 
     #+ funzt so nicht
 
-    if [[ "$file" == ".partarumGhost" ]] && [[ "$file" == "init.sh" ]];
+    if [[ "$file" == ".partarumGhost" ]] || [[ "$file" == "init.sh" ]];
     then
       rm -rf "$file"
       echo "$file" &>> deletedFiles.txt
