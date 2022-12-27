@@ -38,9 +38,9 @@ function loadSystem() {
 
   git clone https://github.com/partarum/install.partarum.download.git installPartarum
 
-  mkdir githolder
+  mkdir gitHolder
 
-  git clone "$1" githolder/userRep
+  git clone "$1" gitHolder/userRep
 
   mkdir baseHolder
 
