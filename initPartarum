@@ -48,10 +48,13 @@ function loadSystem() {
 
   cp ../.* baseHolder/
 
-  for file in baseHolder/.* baseHolder/*
+  for file in baseHolder/.* baseHolder/*;
   do
-    cmd "$file" &>> copiedFiles.txt
-    if [[ "$file" == baseHolder/.partarumGhost ]] && [[ $(cmd "$file") == baseHolder/init.sh ]];
+    echo "$file" &>> copiedFiles.txt
+
+    #+ funzt so nicht
+
+    if [[ "$file" == ".partarumGhost" ]] && [[ "$file" == "init.sh" ]];
     then
       rm -rf "$file"
       echo "$file" &>> deletedFiles.txt
