@@ -24,6 +24,8 @@ function loadSystem() {
     cd .partarumGhost || exit
 
     pwd &> pwdInit_2.txt
+
+    echo "$1" &> userRepURL.txt
   fi
 
   git config config.user "Partarum"
